@@ -26,7 +26,7 @@ int AlturaArvBin(tipo_arv_bin*);
 int ImprimeNivelArvBin(tipo_arv_bin*, int, int );
 int ContabilizaNosArvBin(tipo_arv_bin*);
 int ContabilizaNosFolhasArvBin(tipo_arv_bin*);
-int RemoveArvBin(tipo_arv_bin*, int);
+tipo_arv_bin * RemoveArvBin(tipo_arv_bin*, int);
 
 
 

@@ -150,6 +150,52 @@ int ImprimeNivelArvBin(tipo_arv_bin* arv, int nivel, int contador) {
 }
 
 
-int RemoveArvBin(tipo_arv_bin*, int);
+tipo_arv_bin* RemoveArvBin(tipo_arv_bin* arv, int chave){
+    if (arv == NULL){//se não houver elementos na árvore binária:
+        printf("Arvoze vaiza, impossível remoção");
+        return NULL;
+    }else{//se houver elementos na árvore binária faça:
+        if(arv -> valor == chave){//verifico se a chave é a raiz, se for:
+
+            //remoção de nó folha
+            if((arv->esq == NULL) && (arv -> dir == NULL)){//verifico se os ponteiros esquerdo e direito(filhos), são nulos, se for:
+                printf("Elemento folha removido: %d\n\n", chave);
+                
+                free (arv);//removo o nó
+                return NULL;
+
+            }else{
+                //remoção de nós com um ou dois filhos:
+
+                //verificação se o elemento tem dois filhos 
+                if((arv -> esq != NULL) && (arv-> dir != NULL)){
+                    //remoção de nó com dois filhos
+
+                }else{//nó com apenas um filho
+                    //remoção de nó com um filho
+
+                    tipo_arv_bin *aux; //criação de um ponteiro auxiliar para guardar o nó filho do elemento que irá ser removido e retornar como filho do pai do elemento que irá ser removido
+                    if(arv-> esq != NULL){
+                        aux = arv -> esq;//guardando o filho esquerdo em auxiliar, caso o filho esquerdo seja diferente de nulo
+                    }else{
+                        aux = arv -> dir;//guardando o filho direito em auxiliar, caso o filho esquerdo seja diferente de nulo
+                    }
+                    free(arv);//removendo o elemento que tem apenas um filho
+                    return aux;//retornando o filho do cara que foi removido como filho do pai do cara que foi removido no lugar do cara que foi removido
+                }
+                
+            }
+
+        }else{//se a chave não for igual a ariz faça:
+            if(chave < arv -> valor){//verifico se a chave é menor que a raiz, se for faça:
+                arv -> esq = RemoveArvBin(arv -> esq, chave);//recursão da função a esquerda até achar o nó 
+            }else{
+                arv ->dir = RemoveArvBin(arv -> dir, chave);//recursão a direita até achar o nó
+                return arv;
+            }
+        }
+    }
+
+}
 
 

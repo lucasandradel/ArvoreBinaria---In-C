@@ -53,10 +53,10 @@ int main (){
     // Chamada para imprimir os nós do nível 2
     printf("Impressão dos nós do nivel 2\n");
     ImprimeNivelArvBin(arvore, 2, 0);
-    printf("\n");
+    printf("\n\n");
 
-    
-
+    int folha = 99;
+    RemoveArvBin(arvore, folha);
 
     return 1;
 }
