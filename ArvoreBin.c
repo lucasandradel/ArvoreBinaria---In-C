@@ -181,6 +181,8 @@ tipo_arv_bin* RemoveArvBin(tipo_arv_bin* arv, int chave){
                         aux = arv -> dir;//guardando o filho direito em auxiliar, caso o filho esquerdo seja diferente de nulo
                     }
                     free(arv);//removendo o elemento que tem apenas um filho
+                    printf("Elemento com um filho removido: %d \n\n ", chave);
+
                     return aux;//retornando o filho do cara que foi removido como filho do pai do cara que foi removido no lugar do cara que foi removido
                 }
                 
