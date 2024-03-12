@@ -130,9 +130,45 @@ int ContabilizaNosFolhasArvBin(tipo_arv_bin* arv ){
     }else{
         return ContabilizaNosFolhasArvBin(arv -> esq) + ContabilizaNosFolhasArvBin (arv -> dir);
     }
+}
 
 
-}   
+int ContabilizaNosComUmFilho(tipo_arv_bin *arv){
+    if (arv == NULL){
+        return 0;
+    }else{
+        if ((arv -> esq != NULL) && (arv -> dir == NULL) || (arv -> esq == NULL) && (arv -> dir != NULL)){
+            return 1;
+        }return ContabilizaNosComUmFilho (arv ->esq) + ContabilizaNosComUmFilho(arv -> dir);
+        }
+}
+
+
+tipo_arv_bin* ImprimeTipoNoh(tipo_arv_bin *arv){
+    if (arv == NULL){
+        //printf("[ÁRVORE NULA]\n");
+        return NULL;
+    }else{
+        if((arv ->esq == NULL) && (arv-> dir == NULL)){
+            printf("Elemento Folha: %d\n", arv -> valor);
+            
+
+        }else if((arv -> esq != NULL) && (arv -> dir != NULL)){
+            printf("Elemento com dois filhos: %d\n",arv->valor);
+        }else{
+            printf("Elemento com apenas um filho: %d\n", arv-> valor);
+        }
+        ImprimeTipoNoh(arv -> esq);
+        ImprimeTipoNoh(arv -> dir);
+        
+    }
+
+    
+        
+
+        
+    
+}
 
 int ImprimeNivelArvBin(tipo_arv_bin* arv, int nivel, int contador) {
     if (arv == NULL) {
@@ -152,24 +188,35 @@ int ImprimeNivelArvBin(tipo_arv_bin* arv, int nivel, int contador) {
 
 tipo_arv_bin* RemoveArvBin(tipo_arv_bin* arv, int chave){
     if (arv == NULL){//se não houver elementos na árvore binária:
-        printf("Arvoze vaiza, impossível remoção");
+        printf("Arvore vazia ou Valor inexiste\n");
         return NULL;
     }else{//se houver elementos na árvore binária faça:
         if(arv -> valor == chave){//verifico se a chave é a raiz, se for:
 
             //remoção de nó folha
             if((arv->esq == NULL) && (arv -> dir == NULL)){//verifico se os ponteiros esquerdo e direito(filhos), são nulos, se for:
-                printf("Elemento folha removido: %d\n\n", chave);
                 
                 free (arv);//removo o nó
+                printf("Elemento folha removido: %d\n\n", chave);
+
                 return NULL;
 
-            }else{
-                //remoção de nós com um ou dois filhos:
-
+            }else{//remoção de nós com dois filhos:
+                
                 //verificação se o elemento tem dois filhos 
                 if((arv -> esq != NULL) && (arv-> dir != NULL)){
-                    //remoção de nó com dois filhos
+                    tipo_arv_bin *aux;
+                    aux = arv -> esq;
+                    while (aux -> dir!= NULL)
+                    {
+                        aux = aux -> dir;
+                    }
+                    arv -> valor = aux -> valor;
+                    aux -> valor = chave;
+                    printf("Elemento %d trocado \n\n", chave);
+                    arv -> esq = RemoveArvBin(arv -> esq, chave);
+                    return arv;
+                    
 
                 }else{//nó com apenas um filho
                     //remoção de nó com um filho
@@ -188,13 +235,15 @@ tipo_arv_bin* RemoveArvBin(tipo_arv_bin* arv, int chave){
                 
             }
 
-        }else{//se a chave não for igual a ariz faça:
+        }else{//se a chave não for igual a a raiz faça:
             if(chave < arv -> valor){//verifico se a chave é menor que a raiz, se for faça:
                 arv -> esq = RemoveArvBin(arv -> esq, chave);//recursão da função a esquerda até achar o nó 
+                return arv;
             }else{
                 arv ->dir = RemoveArvBin(arv -> dir, chave);//recursão a direita até achar o nó
                 return arv;
             }
+
         }
     }
 
