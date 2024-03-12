@@ -132,7 +132,6 @@ int ContabilizaNosFolhasArvBin(tipo_arv_bin* arv ){
     }
 }
 
-
 int ContabilizaNosComUmFilho(tipo_arv_bin *arv){
     if (arv == NULL){
         return 0;
@@ -142,7 +141,6 @@ int ContabilizaNosComUmFilho(tipo_arv_bin *arv){
         }return ContabilizaNosComUmFilho (arv ->esq) + ContabilizaNosComUmFilho(arv -> dir);
         }
 }
-
 
 tipo_arv_bin* ImprimeTipoNoh(tipo_arv_bin *arv){
     if (arv == NULL){
@@ -174,7 +172,6 @@ int ImprimeNivelArvBin(tipo_arv_bin* arv, int nivel, int contador) {
     if (arv == NULL) {
         return 0 ;
     }
-
     int vl = arv->valor;
     if (contador == nivel) {
         printf("%d ", vl);
@@ -185,6 +182,34 @@ int ImprimeNivelArvBin(tipo_arv_bin* arv, int nivel, int contador) {
     ImprimeNivelArvBin(arv->dir, nivel, contador + 1);
 }
 
+tipo_arv_bin * IdentificaMenorValorArv (tipo_arv_bin* arv){
+    if (arv == NULL){
+        return NULL;
+    }else{
+
+        if (arv -> esq == NULL){
+            printf("----- O menor valor da arvore eh: %d -----\n\n", arv -> valor);
+        }else{
+            IdentificaMenorValorArv(arv-> esq);
+        }
+
+        return arv;
+    }
+}
+
+tipo_arv_bin * IdentificaMaiorValorArv (tipo_arv_bin* arv){
+    if (arv == NULL){
+        return NULL;
+    }else{
+        
+        if (arv -> dir == NULL){
+            printf("----- O maior valor da arvore Binaria eh: %d -----\n\n", arv -> valor);
+        }else{
+            IdentificaMaiorValorArv(arv -> dir);
+        }
+        return arv;
+    }
+}
 
 tipo_arv_bin* RemoveArvBin(tipo_arv_bin* arv, int chave){
     if (arv == NULL){//se não houver elementos na árvore binária:
@@ -213,7 +238,7 @@ tipo_arv_bin* RemoveArvBin(tipo_arv_bin* arv, int chave){
                     }
                     arv -> valor = aux -> valor;
                     aux -> valor = chave;
-                    printf("Elemento %d trocado \n\n", chave);
+                    printf("Elemento com dois filhos %d trocado \n\n", chave);
                     arv -> esq = RemoveArvBin(arv -> esq, chave);
                     return arv;
                     

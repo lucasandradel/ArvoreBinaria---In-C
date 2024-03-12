@@ -29,6 +29,8 @@ int ContabilizaNosFolhasArvBin(tipo_arv_bin*);
 int ContabilizaNosComUmFilho(tipo_arv_bin *);
 tipo_arv_bin * RemoveArvBin(tipo_arv_bin*, int);
 tipo_arv_bin* ImprimeTipoNoh(tipo_arv_bin*);
+tipo_arv_bin * IdentificaMenorValorArv (tipo_arv_bin*);
+tipo_arv_bin * IdentificaMaiorValorArv (tipo_arv_bin*);
 
 
 

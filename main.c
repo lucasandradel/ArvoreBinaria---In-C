@@ -8,14 +8,15 @@ int main (){
     tipo_arv_bin *arvore;
     arvore = NULL;
 
-    InsereArvBin(&arvore, 583);
-    InsereArvBin(&arvore, 245);
-    InsereArvBin(&arvore, 731);
-    InsereArvBin(&arvore, 123);
-    InsereArvBin(&arvore, 389);
-    InsereArvBin(&arvore, 684);
-    InsereArvBin(&arvore, 893);
-    InsereArvBin(&arvore, 278);
+    InsereArvBin(&arvore, 12);
+    InsereArvBin(&arvore, 7);
+    InsereArvBin(&arvore, 20);
+    InsereArvBin(&arvore, 15);
+    InsereArvBin(&arvore, 11);
+    InsereArvBin(&arvore, 8);
+    InsereArvBin(&arvore, 6);
+    InsereArvBin(&arvore, 14);
+    InsereArvBin(&arvore, 25);
 
     printf("\t\n--------- Valores inseridos!!! --------\n\n ");
 
@@ -40,7 +41,10 @@ int main (){
 
     printf ("----- A quantidade de nós com apenas um filho da arvore eh: %d -----\n\n",ContabilizaNosComUmFilho(arvore) );
 
+    IdentificaMenorValorArv(arvore);
+    IdentificaMaiorValorArv(arvore);
 
+    printf(" -------- Altura da arvore: %d --------\n\n ", AlturaArvBin(arvore));
 
     int vl;
 
@@ -54,7 +58,9 @@ int main (){
         printf("[ERRO] Valor %d não encontrado [ERRO]\n\n", vl);
     }
 
-    printf(" -------- Altura da arvore: %d --------\n\n ", AlturaArvBin(arvore));
+    
+
+    
 
 
     printf("----------------------------------------------------------------------------------     REMOÇÂO    ----------------------------------------------------------------------------------------------\n\n");
